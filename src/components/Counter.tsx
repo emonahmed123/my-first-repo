@@ -18,7 +18,7 @@ export default function Counter() {
                 <button
                     className="bg-indigo-400 text-white px-3 py-2 rounded shadow"
                     onClick={increment}
-                >
+                > 
                     Increment
                 </button>
                 <button
