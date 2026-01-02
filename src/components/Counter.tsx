@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { connect } from "react-redux";
+import { decrement, increment } from "../redux/counter/action";
 
-export default function Counter() {
-    const [count, setCount] = useState(0);
+function Counter({ count, increment, decrement }) {
 
-    const increment = () => {
-        setCount((prevCount) => prevCount + 1);
-    };
+    // const [count, setCount] = useState(0);
 
-    const decrement = () => {
-        setCount((prevCount) => prevCount - 1);
-    };
+    // const increment = () => {
+    //     setCount((prevCount) => prevCount + 1);
+    // };
+
+    // const decrement = () => {
+    //     setCount((prevCount) => prevCount - 1);
+    // };
 
     return (
         <div className="p-4 flex flex-col items-center justify-center space-y-5 bg-white rounded shadow ">
@@ -18,7 +20,7 @@ export default function Counter() {
                 <button
                     className="bg-indigo-400 text-white px-3 py-2 rounded shadow"
                     onClick={increment}
-                > 
+                >
                     Increment
                 </button>
                 <button
@@ -28,6 +30,22 @@ export default function Counter() {
                     Decrement
                 </button>
             </div>
-        </div>
+        </div >
     );
 }
+
+const mapStateToProps = (state) => {
+    return {
+        count: state.value,
+    };
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        increment: (value) => dispatch(increment(value)),
+        decrement: (value) => dispatch(decrement(value)),
+
+    };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
